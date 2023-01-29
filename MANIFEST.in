@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include letzpay_integration *.css
+recursive-include letzpay_integration *.csv
+recursive-include letzpay_integration *.html
+recursive-include letzpay_integration *.ico
+recursive-include letzpay_integration *.js
+recursive-include letzpay_integration *.json
+recursive-include letzpay_integration *.md
+recursive-include letzpay_integration *.png
+recursive-include letzpay_integration *.py
+recursive-include letzpay_integration *.svg
+recursive-include letzpay_integration *.txt
+recursive-exclude letzpay_integration *.pyc
