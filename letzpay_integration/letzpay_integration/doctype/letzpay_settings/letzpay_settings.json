@@ -1,0 +1,78 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-01-31 01:38:56.794771",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "transaction_details_section",
+  "pay_id",
+  "salt",
+  "encryption_key",
+  "sale_url",
+  "refund_url",
+  "status_enquiry_url"
+ ],
+ "fields": [
+  {
+   "fieldname": "transaction_details_section",
+   "fieldtype": "Section Break",
+   "label": "Transaction Details"
+  },
+  {
+   "fieldname": "pay_id",
+   "fieldtype": "Data",
+   "label": "Pay ID"
+  },
+  {
+   "fieldname": "salt",
+   "fieldtype": "Data",
+   "label": "Salt"
+  },
+  {
+   "fieldname": "encryption_key",
+   "fieldtype": "Data",
+   "label": "Encryption Key"
+  },
+  {
+   "fieldname": "sale_url",
+   "fieldtype": "Data",
+   "label": "Sale URL"
+  },
+  {
+   "fieldname": "refund_url",
+   "fieldtype": "Data",
+   "label": "Refund URL"
+  },
+  {
+   "fieldname": "status_enquiry_url",
+   "fieldtype": "Data",
+   "label": "Status Enquiry URL"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2023-01-31 01:38:56.794771",
+ "modified_by": "Administrator",
+ "module": "Letzpay Integration",
+ "name": "Letzpay Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
