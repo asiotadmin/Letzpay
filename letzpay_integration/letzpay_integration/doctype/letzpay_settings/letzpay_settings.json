@@ -2,7 +2,6 @@
  "actions": [],
  "allow_rename": 1,
  "creation": "2023-01-31 01:38:56.794771",
- "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -13,7 +12,9 @@
   "encryption_key",
   "sale_url",
   "refund_url",
-  "status_enquiry_url"
+  "status_enquiry_url",
+  "currency_code",
+  "txntype"
  ],
  "fields": [
   {
@@ -50,12 +51,22 @@
    "fieldname": "status_enquiry_url",
    "fieldtype": "Data",
    "label": "Status Enquiry URL"
+  },
+  {
+   "fieldname": "currency_code",
+   "fieldtype": "Data",
+   "label": "CURRENCY CODE"
+  },
+  {
+   "fieldname": "txntype",
+   "fieldtype": "Data",
+   "label": "TXNTYPE"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2023-01-31 01:38:56.794771",
+ "modified": "2023-02-05 00:55:48.093081",
  "modified_by": "Administrator",
  "module": "Letzpay Integration",
  "name": "Letzpay Settings",
@@ -73,6 +84,5 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+ "sort_order": "DESC"
 }

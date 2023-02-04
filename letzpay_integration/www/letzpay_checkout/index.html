@@ -1,69 +1,85 @@
-<html>
-   <head onload="submitForm()">
-      <script type="text/javascript">
-        console.log("{{ data }}")
-         var hash = "{{ data.hash }}";
-         function submitForm() {
-           if(hash =='') {
-             return;
-           }
-           var checkoutForm = document.forms.checkoutForm;
-           checkoutForm.submit();
-         }
-      </script>
-   </head>
-   <body>
-      <h2>Letzpay Demo Checkout Page ERPNext_Divakar</h2>
-      <br/>  
-      <form action={{ action }} method="post" name="checkoutForm">
-         <table>
-            <tr>
-               <td>PAY_ID: </td>
-               <td><input type="text" id="PAY_ID" name="PAY_ID" value="{{ data.PAY_ID }}" /></td>
-            </tr>
-            <tr>
-               <td>ORDER_ID: </td>
-               <td><input type="text" id="ORDER_ID" name="ORDER_ID" value="{{ data.ORDER_ID }}" /></td>
-            </tr>
-            <tr>
-               <td>AMOUNT: </td>
-               <td><input type="text" id="AMOUNT" name="AMOUNT" value="{{ data.AMOUNT }}" /></td>
-            </tr>
-            <tr>
-               <td>TXNTYPE: </td>
-               <td><input type="text" id="TXNTYPE" name="TXNTYPE" value="{{ data.TXNTYPE }}" /></td>
-            </tr>
-            <tr>
-               <td>CUST_NAME: </td>
-               <td><input type="text" id="CUST_NAME" name="CUST_NAME" value="{{ data.CUST_NAME }}" /></td>
-            </tr>
-            <tr>
-               <td>CUST_EMAIL: </td>
-               <td><input type="text" id="CUST_EMAIL" name="CUST_EMAIL" value="{{ data.CUST_EMAIL }}" /></td>
-            </tr>
-            <tr>
-               <td>CUST_PHONE: </td>
-               <td><input type="text" id="CUST_PHONE" name="CUST_PHONE" value="{{ data.CUST_PHONE }}" /></td>
-            </tr>
-            <tr>
-               <td>CUST_ID: </td>
-               <td><input type="text" id="CUST_ID" name="CUST_ID" value="{{ data.CUST_ID }}" /></td>
-            </tr>
-            <tr>
-               <td>CURRENCY_CODE: </td>
-               <td><input type="text" id="CURRENCY_CODE" name="CURRENCY_CODE" value="{{ data.CURRENCY_CODE }}" /></td>
-            </tr>
-            <tr>
-               <td>RETURN_URL: </td>
-               <td><input type="text" id="RETURN_URL" name="RETURN_URL" value="{{ data.RETURN_URL }}" /></td>
-            </tr>
-            <tr>
-               <td>HASH: </td>
-               <td><input type="text" id="HASH" name="HASH" value="{{ data.hash }}" /></td>
-            </tr>
-            <td colspan="4"><input type="submit" value="Submit" /></td>
-            </tr>
-         </table>
-      </form>
-   </body>
-</html>
+{% extends "templates/web.html" %}
+{% block title %} Payment {% endblock %}
+{%- block header -%}{% endblock %}
+
+{%- block page_content -%}
+<p class='lead text-center centered'>
+	<span class='razorpay-loading'>Loading Payment System</span>
+	<span class='razorpay-confirming hidden'>Confirming Payment</span>
+
+   <form action={{ action }} method="post" name="checkoutForm" style="display: none;">
+      <table>
+         <tr>
+            <td>PAY_ID: </td>
+            <td><input type="text" id="PAY_ID" name="PAY_ID" value="{{ data.PAY_ID }}" /></td>
+         </tr>
+         <tr>
+            <td>ORDER_ID: </td>
+            <td><input type="text" id="ORDER_ID" name="ORDER_ID" value="{{ data.ORDER_ID }}" /></td>
+         </tr>
+         <tr>
+            <td>AMOUNT: </td>
+            <td><input type="text" id="AMOUNT" name="AMOUNT" value="{{ data.AMOUNT }}" /></td>
+         </tr>
+         <tr>
+            <td>TXNTYPE: </td>
+            <td><input type="text" id="TXNTYPE" name="TXNTYPE" value="{{ data.TXNTYPE }}" /></td>
+         </tr>
+         <tr>
+            <td>CUST_NAME: </td>
+            <td><input type="text" id="CUST_NAME" name="CUST_NAME" value="{{ data.CUST_NAME }}" /></td>
+         </tr>
+         <tr>
+            <td>CUST_EMAIL: </td>
+            <td><input type="text" id="CUST_EMAIL" name="CUST_EMAIL" value="{{ data.CUST_EMAIL }}" /></td>
+         </tr>
+         <tr>
+            <td>CUST_PHONE: </td>
+            <td><input type="text" id="CUST_PHONE" name="CUST_PHONE" value="{{ data.CUST_PHONE }}" /></td>
+         </tr>
+         <tr>
+            <td>CUST_ID: </td>
+            <td><input type="text" id="CUST_ID" name="CUST_ID" value="{{ data.CUST_ID }}" /></td>
+         </tr>
+         <tr>
+            <td>CURRENCY_CODE: </td>
+            <td><input type="text" id="CURRENCY_CODE" name="CURRENCY_CODE" value="{{ data.CURRENCY_CODE }}" /></td>
+         </tr>
+         <tr>
+            <td>RETURN_URL: </td>
+            <td><input type="text" id="RETURN_URL" name="RETURN_URL" value="{{ data.RETURN_URL }}" /></td>
+         </tr>
+         <tr>
+            <td>HASH: </td>
+            <td><input type="text" id="HASH" name="HASH" value="{{ data.hash }}" /></td>
+         </tr>
+         <td colspan="4"><input type="submit" value="Submit" /></td>
+         </tr>
+      </table>
+   </form>
+</p>
+{% endblock %}
+{% block style %}
+<style>
+	header, footer {
+		display: none;
+	}
+</style>
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+   var hash = "{{ data.hash }}";
+   frappe.ready(() => {
+      if(hash =='') {
+        return;
+      }
+      var checkoutForm = document.forms.checkoutForm;
+      checkoutForm.submit();
+   })
+ </script>
+{% endblock %}
+
+
+
