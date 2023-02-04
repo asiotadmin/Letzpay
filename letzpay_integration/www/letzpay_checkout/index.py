@@ -9,7 +9,6 @@ def get_context(context):
     letz_perams = frappe.get_doc('Letzpay Settings')
     SALT = letz_perams.salt #Provided by Letzpay
     payment_req_doc = frappe.get_doc('Payment Request',integraton_req.reference_docname)
-    print(payment_req_doc.as_dict(),"HJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJj")
     sales_doc = frappe.get_doc('Sales Invoice', payment_req_doc.reference_name )
     contact_detail = frappe.get_doc('Contact', sales_doc.contact_person)
     data.update({'PAY_ID':letz_perams.pay_id}) #Provided by Letzpay
@@ -21,7 +20,7 @@ def get_context(context):
     data.update({'CUST_PHONE':contact_detail.mobile_no})
     data.update({'CUST_ID':sales_doc.customer})
     data.update({'CURRENCY_CODE':letz_perams.currency_code})
-    data.update({'RETURN_URL':'http://127.0.0.1:8003/api/method/letzpay_integration.www.letzpay_checkout.index.get_api_data'}) #Merchant's return URL
+    data.update({'RETURN_URL':f'{frappe.utils.get_url()}/api/method/letzpay_integration.www.letzpay_checkout.index.get_api_data'}) #Merchant's return URL
     hashString=''
     for key in sorted(data.keys()):
             hashString+=("%s=%s~" % (key, data[key]))
@@ -31,7 +30,6 @@ def get_context(context):
     hashh = hashlib.sha256(finalHashString.encode())
     finalHash = hashh.hexdigest().upper()
     data.update({'hash':finalHash})
-    print(data, '>>>>>>>>')
     context.data = data
     context.action = action
 
