@@ -18,6 +18,7 @@ from frappe.model.document import Document
 from frappe.utils import call_hook_method, cint, get_timestamp, get_url
 
 class LetzpaySettings(Document):
+	supported_currencies = ["INR"]
 	def validate(self):
 		create_payment_gateway("Letzpay")
 		call_hook_method("payment_gateway_enabled", gateway="Letzpay")
@@ -48,8 +49,8 @@ class LetzpaySettings(Document):
 
 
 	def get_payment_url(self, **kwargs):
-		integration_request = create_request_log(kwargs, service_name="Razorpay")
-		return get_url(f"./razorpay_checkout?token={integration_request.name}")
+		integration_request = create_request_log(kwargs, integration_type='Host',service_name="Razorpay")
+		return get_url(f"./letzpay_checkout?token={integration_request.name}")
 
 	def create_order(self, **kwargs):
 		# Creating Orders https://razorpay.com/docs/api/orders/
@@ -58,7 +59,7 @@ class LetzpaySettings(Document):
 		kwargs["amount"] *= 100
 
 		# Create integration log
-		integration_request = create_request_log(kwargs, service_name="Razorpay")
+		integration_request = create_request_log(kwargs, integration_type='Host' ,service_name="Razorpay")
 
 		# Setup payment options
 		payment_options = {
