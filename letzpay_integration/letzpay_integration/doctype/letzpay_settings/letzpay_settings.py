@@ -25,9 +25,12 @@ class LetzpaySettings(Document):
 				).format(currency)
 			)
 
-	def get_payment_url(self, **kwargs):
+	def get_payment_url(self,context=None, **kwargs):
 		integration_request = create_request_log(kwargs, integration_type='Host',service_name="LetzPay")
-		return get_url(f"./letzpay_checkout?token={integration_request.name}")
+		ul1 = frappe.get_doc('Payment Request', {"name":integration_request.reference_docname})
+		ul1.payment_url = get_url(f"./letzpay_checkout?token={integration_request.name}")
+		frappe.db.set_value('Payment Request',ul1.name,'payment_url',ul1.payment_url)
+		return ul1.payment_url 
 
 	def create_request(self, data):
 		self.data = frappe._dict(data)
